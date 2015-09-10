@@ -3,3 +3,4 @@
 *~
 *.pyc
 console/TestCases
+website/node_modules/*
