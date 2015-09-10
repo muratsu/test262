@@ -2,14 +2,20 @@
   "name": "test262-website",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "build": "gulp",
+    "serve": "",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Murat Sutunc",
   "license": "ISC",
   "dependencies": {
-    "gulp": "^3.9.0"
+    "browserify": "^11.0.1",
+    "gulp": "^3.9.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "devDependencies": {
+    "del": "^2.0.2",
+    "gulp-serve": "^1.1.0"
   }
 }
