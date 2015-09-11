@@ -6,6 +6,7 @@ var del = require('del');
 var sequence = require('gulp-sequence');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
+var t262HelperCompiler = require('./src/js/gulpT262HelperCompiler');
 
 var path = require('path');
 
@@ -22,10 +23,22 @@ gulp.task('assets', function(cb) {
         .pipe(gulp.dest('./build/styles'));
 
     gulp.src('./src/*.html')
-        .pipe(gulp.dest('./build/'))
+        .pipe(gulp.dest('./build'))
+
+    gulp.src('./src/tests/*')
+        .pipe(gulp.dest('./build/tests'));
 
     cb();
 });
+
+// Package helpers
+gulp.task('helpers', function() {
+
+    gulp.src('./node_modules/test262-harness/lib/helpers/*')
+        .pipe(t262HelperCompiler('test.json'))
+        .pipe(gulp.dest('./build/js/helpers'))
+
+})
 
 // Clean everything in build but directory itself and .gitignore
 gulp.task('clean', function(cb) {
