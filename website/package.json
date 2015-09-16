@@ -14,6 +14,7 @@
     "gulp": "^3.9.0",
     "gulp-util": "^3.0.6",
     "highland": "^2.5.1",
+    "stream-bifurcate": "^1.0.1",
     "test262-parser": "^2.0.6",
     "through": "^2.3.8",
     "through2": "^2.0.0",

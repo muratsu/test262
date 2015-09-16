@@ -31,13 +31,11 @@ gulp.task('assets', function(cb) {
     cb();
 });
 
-// Package helpers
-gulp.task('helpers', function() {
-
-    gulp.src('./node_modules/test262-harness/lib/helpers/*')
-        .pipe(t262HelperCompiler('test.json'))
-        .pipe(gulp.dest('./build/js/helpers'))
-
+// Precompilation stuff
+gulp.task('precompilation', function() {
+    return gulp.src('./node_modules/test262-harness/lib/helpers/*')
+        .pipe(t262HelperCompiler('helpers.json'))
+        .pipe(gulp.dest('./src/precompilation'))
 })
 
 // Clean everything in build but directory itself and .gitignore
@@ -51,7 +49,7 @@ gulp.task('clean', function(cb) {
     });
 });
 
-gulp.task('js', function() {
+gulp.task('js', ['precompilation'], function() {
     return browserify('./src/js/index.js')
         .bundle()
         .pipe(source('index.js'))

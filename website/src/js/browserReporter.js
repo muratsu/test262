@@ -32,6 +32,7 @@ function actualString(test) {
 }
 
 module.exports = through(function(data) {
+    console.log('got a test result');
     if(data.pass) {
         state.pass++;
         process.stdout.write("PASS " + data.file);

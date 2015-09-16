@@ -80,20 +80,16 @@ module.exports = function(file) {
 
 function Compiler() {
   this.contentParts = [];
-  // this.contentParts.push(content);
-  // this.add('{');
 }
 
 Compiler.prototype.add = function(relPath, content) {
   // Check if initial buffer is there
   var emptyParts = this.contentParts.length === 0;
 
-
-
   // Convert content to string if it's buffer
   if (Buffer.isBuffer(content)) content = content.toString();
   
-  // escape 's  
+  // escape "s  
   content = content.replace(/([^"\\]*(?:\\.[^"\\]*)*)"/g, '$1\\"');
 
   // fit everything in one line
