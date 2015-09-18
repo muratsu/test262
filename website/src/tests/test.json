@@ -1,6 +1,0 @@
-{
-  "tests": [
-      "// Copyright (c) 2012 Ecma International.  All rights reserved.\n// This code is governed by the BSD license found in the LICENSE file.\n\n/*---\nes5id: 10.5-1-s\ndescription: Strict Mode - arguments object is immutable\nflags: [onlyStrict]\n---*/\n\n\nassert.throws(SyntaxError, function() {\n            (function fun() {\n                eval('arguments = 10');\n            })(30);\n});",
-      "// Copyright (c) 2012 Ecma International.  All rights reserved.\n// This code is governed by the BSD license found in the LICENSE file.\n\n/*---\nes5id: 10.6-13-a-3\ndescription: An indirect call to arguments.callee.caller should work\nflags: [noStrict]\nfeatures: [caller]\n---*/\n\n    var called = false;\n    \n    function test1(flag) {\n        if (flag!==true) {\n            test2();\n        } else {\n            called = true;\n        }\n    }\n\n    function test2() {  \n       if (arguments.callee.caller===undefined) {\n         called = true;  //Extension not supported - fake it\n       } else {     \n         var explicit = arguments.callee.caller;\n         explicit(true);\n       }\n    }\n    \n    test1();\n\nassert(called, 'called !== true');"
-    ]
-}

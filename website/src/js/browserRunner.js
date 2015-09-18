@@ -141,7 +141,6 @@ var errorLogRe = /^test262\/error (.*)$/;
 // errorMessage: message from error thrown (used for debugging purposes)
 // errorStack: stack trace of error thrown (used for debugging purposes)
 BrowserRunner.prototype.validateResult = function(test, result) {
-    console.log('validating result');
     var expectingStack = false;
     var isNegative = test.attrs.flags.negative || test.attrs.negative;
     // parse result from log

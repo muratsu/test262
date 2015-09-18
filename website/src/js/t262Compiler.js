@@ -8,7 +8,7 @@ var File = gutil.File;
 
 module.exports = function(file) {
   if (!file) {
-    throw new PluginError('gulpT262HelperCompiler', 'Missing file option for gulpT262HelperCompiler');
+    throw new PluginError('t262Compiler', 'Missing file option for t262Compiler');
   }
 
   var latestFile;
@@ -21,7 +21,7 @@ module.exports = function(file) {
   } else if (typeof file.path === 'string') {
     fileName = path.basename(file.path);
   } else {
-    throw new PluginError('gulpT262HelperCompiler', 'Missing path in file options for gulpT262HelperCompiler');
+    throw new PluginError('t262Compiler', 'Missing path in file options for t262Compiler');
   }
 
   function bufferContents(file, enc, cb) {
@@ -33,7 +33,7 @@ module.exports = function(file) {
 
     // no streams 
     if (file.isStream()) {
-      this.emit('error', new PluginError('gulpT262HelperCompiler',  'Streaming not supported'));
+      this.emit('error', new PluginError('t262Compiler',  'Streaming not supported'));
       cb();
       return;
     }
@@ -88,6 +88,9 @@ Compiler.prototype.add = function(relPath, content) {
 
   // Convert content to string if it's buffer
   if (Buffer.isBuffer(content)) content = content.toString();
+
+  // escape forwards shashes  
+  content = content.replace(/\\/g, '\\\\');
   
   // escape "s  
   content = content.replace(/([^"\\]*(?:\\.[^"\\]*)*)"/g, '$1\\"');

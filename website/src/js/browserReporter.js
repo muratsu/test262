@@ -1,5 +1,3 @@
-var through = require('through2');
-
 var state = {
     pass: 0,
     fail: 0,
@@ -31,11 +29,10 @@ function actualString(test) {
     }
 }
 
-module.exports = through(function(data) {
-    console.log('got a test result');
+module.exports = function(data) {
     if(data.pass) {
         state.pass++;
-        process.stdout.write("PASS " + data.file);
+        console.log("PASS " + data.file);
     } else {
         state.fail++;
         data.attrs.file = data.file;
@@ -44,8 +41,4 @@ module.exports = through(function(data) {
                              "     Exp: " + expectedString(data) + "\n" +
                              "     Got: " + actualString(data) + "\n\n");
     }
-}, function() {
-    console.log("Ran " + (state.pass + state.fail) + " tests")
-    console.log(state.pass + " passed")
-    console.log(state.fail + " failed")
-});
+};
